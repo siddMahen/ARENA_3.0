@@ -463,21 +463,21 @@ def einsum_mv(mat: np.ndarray, vec: np.ndarray):
     """
     Returns the same as `np.matmul`, when `mat` is a 2D array and `vec` is 1D.
     """
-    raise einops.einsum(mat, vec, "x y, y -> x")
+    return einops.einsum(mat, vec, "x y, y -> x")
 
 
 def einsum_mm(mat1: np.ndarray, mat2: np.ndarray):
     """
     Returns the same as `np.matmul`, when `mat1` and `mat2` are both 2D arrays.
     """
-    return einops.einsum(mat1, mat2, "x y, z w -> x w")
+    return einops.einsum(mat1, mat2, "x y, y w -> x w")
 
 
 def einsum_inner(vec1: np.ndarray, vec2: np.ndarray):
     """
     Returns the same as `np.inner`.
     """
-    return einops.einsum(vec1, vec2, "x, y -> ") 
+    return einops.einsum(vec1, vec2, "x, x -> ") 
 
 
 def einsum_outer(vec1: np.ndarray, vec2: np.ndarray):
